@@ -1,4 +1,4 @@
-# make up What I couldn't answer right
+# To make up what I couldn't answer right
 
 1. import and invoke Fetching method in different file.
 2. What and How useEffect hook works
