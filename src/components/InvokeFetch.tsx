@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { constSelector } from "recoil";
 import styled from "styled-components";
 import getAPIData from "../api";
 
@@ -18,6 +19,8 @@ interface IMovieDataPerCate {
 }
 function InvokeFetch() {
   const [movieData, setMovieData] = useState<IMovieDataPerCate>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading1, setIsLoading1] = useState(true);
 
   async function getData() {
     const data = await getAPIData();
@@ -29,11 +32,32 @@ function InvokeFetch() {
     getData();
   }, []);
 
-  console.log("movieData", movieData);
+  useEffect(() => {
+    if (isLoading) setIsLoading1((curr) => !curr);
+    console.log("1. isLoading", isLoading);
+    console.log("1. isLoading1", isLoading1);
+    return console.log("executed componentWillUnMount");
+  }, [isLoading]);
+
+  useEffect(() => {
+    console.log("2. isLoading", isLoading);
+    console.log("2. isLoading1", isLoading1);
+    return console.log(" 2. isLoading1 executed componentWillUnMount");
+  }, [isLoading1]);
+
+  //console.log("movieData", movieData);
+  console.log("isLoading ===", isLoading);
+  console.log("isLoading1 ===", isLoading1);
+  const onClick = () => {
+    setIsLoading((curr) => !curr);
+  };
 
   return (
     <div>
       <Title>InvokeFetch Page</Title>
+      <button onClick={onClick}> change Loading State</button>
+      <p>isLoading : {`${isLoading}`}</p>
+      <p>isLoading1 : {`${isLoading1}`}</p>
       <ul>
         <SubTitle>Action</SubTitle>
         {movieData?.actionMovieData.map((movie: any, idx) => (
