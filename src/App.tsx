@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from "./theme";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import InvokeFetch from "./components/InvokeFetch";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -75,7 +76,7 @@ function App() {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/">
-              <div>Home</div>
+              <InvokeFetch />
             </Route>
           </Switch>
         </BrowserRouter>
