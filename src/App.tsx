@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -72,7 +71,13 @@ function App() {
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router />
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Switch>
+            <Route path="/">
+              <div>Home</div>
+            </Route>
+          </Switch>
+        </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
