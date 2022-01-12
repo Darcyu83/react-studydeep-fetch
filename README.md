@@ -6,3 +6,5 @@
 4. How javascript function works and What is call stack and task queue.
 
 dang... so frustrated :(
+
+blog : https://blog.naver.com/eyekoko1004
